@@ -1,0 +1,123 @@
+1->npm i  @reduxjs/toolkit
+
+2-> npm install redux react-redux
+
+
+3 -> counter.jsx
+=============
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+const Counter = () => {
+  const counter = useSelector((state) => state.count); // Access the count from the Redux store
+  const dispatch = useDispatch();
+
+  return (
+    <div>
+      <h1>Counter</h1>
+      <div>
+        <button onClick={() => dispatch({ type: 'INCREMENT' })}>Increment</button>
+      </div>
+      <div>
+        <button onClick={() => dispatch({ type: 'DECREMENT' })}>Decrement</button>
+      </div>
+      <div>
+        <button onClick={() => dispatch({ type: 'INCREMENTBY',payload:10 })}>INCREMENTBY</button>
+      </div>
+      <p>Counter: {counter}</p>
+    </div>
+  );
+};
+
+export default Counter;
+
+                                or (dynamic way)
+==============================================================
+
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+const Counter = () => {
+  const counter = useSelector((state) => state.count);
+  const dispatch = useDispatch();
+  const [incrementValue, setIncrementValue] = useState(0); // State to hold the increment value
+
+  return (
+    <div>
+      <h1>Counter</h1>
+      <div>
+        <button onClick={() => dispatch({ type: 'INCREMENT' })}>Increment</button>
+      </div>
+      <div>
+        <button onClick={() => dispatch({ type: 'DECREMENT' })}>Decrement</button>
+      </div>
+      <div>
+        <input
+          type="number"
+          value={incrementValue}
+          onChange={(e) => setIncrementValue(Number(e.target.value))} // Update increment value
+          placeholder="Enter increment value"
+        />
+        <button onClick={() => dispatch({ type: 'INCREMENTBY', payload: incrementValue })}>
+          Increment by
+        </button>
+      </div>
+      <div>
+        <input
+          type="number"
+          value={incrementValue}
+          onChange={(e) => setIncrementValue(Number(e.target.value))} // Update decrement value
+          placeholder="Enter decrement value"
+        />
+        <button onClick={() => dispatch({ type: 'DECREMENTBY', payload: incrementValue })}>
+          Decrement by
+        </button>
+      </div>
+      <p>Counter: {counter}</p>
+    </div>
+  );
+};
+
+export default Counter;
+
+
+
+4-> StorageEvent.js 
+import { createStore } from 'redux'
+
+const initialState = {
+    count:0
+};
+
+function counterReducer(state=initialState,action){
+    switch(action.type){
+        case 'INCREMENT':
+            return {
+                ...state,
+                count: state.count+1
+            };
+        case 'DECREMENT':
+            return{
+                ...state,
+                count:state.count-1
+            };
+        case 'INCREMENTBY':
+            return{
+                ...state,
+                count:state.count + action.payload
+            };  
+        default:
+            return state;
+    }
+}
+
+const store=createStore(counterReducer);
+export default store;
+
+
+
+
+
+// =================================using connect==========================
+1) -> npm install react-redux redux
+

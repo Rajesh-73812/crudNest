@@ -1,0 +1,26 @@
+ 1) ->  docker ps (List all running containers)
+        =========
+2) docker ps -a (List all containers, including those that are not running)
+3) docker ps -n=1 (List only the most recent created container)
+4) docker ps -q (List the numeric ID of all running containers)
+5) docker ps -s (List the size of all running containers)
+
+
+6) -> docker start <container_name_or_id>  (Start a stopped container:)
+7) -> docker stop <container_name_or_id>  (Stop a running container)
+8) -> docker restart <container_name_or_id>  (Restart a running container)
+9) -> docker rm <container_name_or_id>  (Remove a stopped container)
+10) -> docker container prune (Remove all stopped containers)
+
+11) docker images (List all images)
+12) docker rmi <image_name_or_id> (Remove an image)
+13) docker build -t <image_name> .  (Build an image from a Dockerfile)
+14) -> docker image prune (Remove all unused images)
+
+15) -> docker volume ls (List all volumes)
+16) -> docker volume rm <volume_name_or_id> (Remove a volume)
+17) -> docker volume create <volume_name> (Create a new volume)
+18) ->docker volume prune (Remove all unused volumes)
+19) ->docker-compose up --build (Build and start a service)
+20) -> docker-compose down (Stop and remove containers, networks, volumes, and images)
+21) ->docker-compose logs (Show logs for a service)

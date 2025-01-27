@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+// import {counter} from '../redux/counter';
 const Dashboard = () => {
     const navigate=useNavigate()
     const [data, setData] = useState([]);
@@ -63,6 +63,10 @@ const Dashboard = () => {
                         ))}
                     </tbody>
                 </table>
+
+                {/* <div>
+                    <counter />
+                </div> */}
             </div>
         </div>
     );

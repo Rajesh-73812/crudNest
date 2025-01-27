@@ -1,0 +1,66 @@
+version: "3"
+
+services:
+  # MongoDB service
+  mongo_db:
+    container_name: database_container
+    image: mongo:latest
+    restart: always
+    volumes:
+      - mongo_db:/data/db
+    ports:
+      - 27017:27017
+
+  # Node.js application service
+  app:
+    build: .
+    container_name: app_container
+    ports:
+      - 4002:4001
+    environment:
+      APP_NAME: redis
+      PORT: 4001
+      DB_URI: mongodb://mongo_db:27017/auth-db
+    depends_on:
+      - mongo_db
+
+volumes:
+  mongo_db: {}
+
+# version: "3.9"
+
+# services:
+#   # MongoDB service
+#   mongo_db:
+#     container_name: database_container
+#     image: mongo:latest
+#     restart: always
+#     volumes:
+#       - mongo_db:/data/db
+#     ports:
+#       - 27017:27017
+#     healthcheck:
+#       test: ["CMD", "mongo", "--eval", "db.runCommand({ ping: 1 })"]
+#       interval: 10s # How often to check
+#       timeout: 5s   # Time to wait for a response
+#       retries: 3    # Number of retries before marking as unhealthy
+
+#   # Node.js application service
+#   app:
+#     build: .
+#     container_name: app_container
+#     ports:
+#       - 4002:4001
+#     volumes:
+#       - ./:/usr/src/app
+#       - /usr/src/app/node_modules
+#     environment:
+#       APP_NAME: redis
+#       PORT: 4001
+#       DB_URI: mongodb://mongo_db:27017/auth-db
+#     depends_on:
+#       mongo_db:
+#         condition: service_healthy
+
+# volumes:
+#   mongo_db: {}
