@@ -1,3 +1,10 @@
+Question set
+=============
+1)find duplicate elememt in array   
+2)check anagram
+3)Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+
+
 1) find duplicate elememt in array 
     // a) brute force approach: O(n^2) time complexity
     const arr=[1,2,3,4,4];
